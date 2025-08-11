@@ -7,7 +7,38 @@
     <title>Top page</title>
 </head>
 <body class="container">
-    <h1 class="display-4">Top page</h1>
-    <p  class="h6 alert alert-primary" th:text="${msg}">Default</p>
+    <h1 class="display-4">Hello page</h1>
+    <p th:text="${msg}">Default</p>
+    <div class="h6 alert alert-primary">
+        <form method="post" action=".">
+            <div class="my-2">
+                <input class="form-check-input" type="checkbox" name="check1">
+                <label class="frm-check-label" form="check1">チェック</label>
+            </div>
+            <div class="my-2">
+                <input class="form-check-input" type="radio" name="radio1" value="male" />
+                <label class="frm-check-label" for="radioA">男性</label>
+            </div>
+            <div class="my-2">
+                <input class="form-check-input" type="radio" name="radio1" value="female" />
+                <label class="frm-check-label" for="radioB">女性</label>
+            </div>
+            <div class="my-2">
+                <select class="form-select" name="select1" size="1">
+                    <option value="Windows">Windows</option>
+                    <option value="Mac">Mac</option>
+                    <option vlaue="Linux">Linux</option>
+                </select>
+            </div>
+            <div class="my-2">
+                <select class="form-select" name="select2" size="4" multiple="multiple">
+                    <option value="Android">Android</option>
+                    <option value="iphone">iPhone</option>
+                    <option value="Winfone">Winows</option>
+                </select>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Click" />
+        </form>
+    </div>
 </body>
 </html>
