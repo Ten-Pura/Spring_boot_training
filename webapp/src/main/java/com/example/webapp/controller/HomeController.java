@@ -16,17 +16,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
-import jakarta.transaction.Transactional;
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 
 import com.example.webapp.entity.Person;
 import com.example.webapp.repository.PersonRepository;
+import com.example.webapp.dao.PersonDAOPersonlmpl;
 
 @Controller
 public class HomeController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private PersonDAOPersonlmpl dao;
+
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    public String find(Model model) {
+        model.addAttribute("msg", "Personnのサンプルです。");
+        Iterable<Person> list = dao.getAll();
+        model.addAttribute("data", list);
+        return "find";
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String find_result(
+        HttpServletRequest request,
+        Model model) {
+            String param = request.getParameter("find_str");
+            if (param == "") {
+                return "redirect:/find";
+            } else {
+                model.addAttribute("title", "Find result");
+                model.addAttribute("msg", "「" + param + "」の検索結果");
+                List<Person> list = dao.find(param);
+                model.addAttribute("data", list);
+                return "find";
+            }
+        }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(@ModelAttribute("formModel") Person Person, Model model) {
