@@ -24,7 +24,7 @@ import jakarta.transaction.Transactional;
 
 import com.example.webapp.entity.Person;
 import com.example.webapp.repository.PersonRepository;
-import com.example.webapp.dao.PersonDAOPersonlmpl;
+import com.example.webapp.dao.PersonDAOPersonImpl;
 
 @Controller
 public class HomeController {
@@ -33,7 +33,7 @@ public class HomeController {
     private PersonRepository personRepository;
 
     @Autowired
-    private PersonDAOPersonlmpl dao;
+    private PersonDAOPersonImpl dao;
 
     @RequestMapping(value = "/find", method = RequestMethod.GET)
     public String find(Model model) {
@@ -63,7 +63,7 @@ public class HomeController {
     public String index(@ModelAttribute("formModel") Person Person, Model model) {
         model.addAttribute("title", "Hello page");
         model.addAttribute("msg", "This is a JPA sample data.");
-        List<Person> list = personRepository.findAll();
+        List<Person> list = personRepository.findAllOrderByName();
         model.addAttribute("data", list);
         return "index";
     }
@@ -81,10 +81,20 @@ public class HomeController {
         }else {
             model.addAttribute("title", "Hello page");
             model.addAttribute("msg", "Sorry, there are some errors");
-            Iterable<Person> list = personRepository.findAll();
+            Iterable<Person> list = dao.getAll();
             model.addAttribute("data", list);
             return "index";
         }
+    }
+
+    @RequestMapping(value = "/pase/{pase}", method = RequestMethod.GET)
+    public String pase(@PathVariable int pase, Model model) {
+        model.addAttribute("title", pase + "pase");
+        model.addAttribute("msg", pase + "pase");
+        int limit = 2;
+        Iterable<Person> list = dao.getPase(pase, limit);
+        model.addAttribute("data", list);
+        return "pase";
     }
 
     @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
