@@ -6,7 +6,6 @@ import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -15,7 +14,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class PersonDAOPersonImpl implements PersonDAO<Person> {
-    private static final long serialVersion_UID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -55,7 +55,6 @@ public class PersonDAOPersonImpl implements PersonDAO<Person> {
             .getResultList();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
      public List<Person> find(String fstr) {
         List<Person> list = null;

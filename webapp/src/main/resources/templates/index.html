@@ -44,7 +44,8 @@
 
     <table class="table">
         <thead>
-            <tr><th>ID</th><th>Name</th><th>Mail</th><th>Age</th>
+            <tr><th>ID</th><th>Name</th><th>Mail</th>
+                <th>Age</th><th>Messages</th>
         </thead>
         <tbody>
             <tr th:each="item : ${data}">
@@ -52,6 +53,11 @@
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.mail}"></td>
                 <td th:text="${item.age}"></td>
+                <td>
+                    <ul th:each="msg : ${item.messages}">
+                        <li th:text="${msg.content}"></li>
+                    </ul>
+                </td>
             </tr>
         </tbody>
     </table>

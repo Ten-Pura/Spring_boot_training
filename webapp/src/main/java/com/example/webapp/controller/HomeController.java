@@ -135,22 +135,4 @@ public class HomeController {
         personRepository.deleteById(Person.getId());
         return "redirect:/";
     }
-
-    @PostConstruct
-    public void init() {
-        //1つ目のダミーデータ作成
-        Person p1 = new Person();
-        p1.setName("山田太郎");
-        p1.setMail("yamada@yamada.com");
-        p1.setAge(20);
-        p1.setMemo("");
-        personRepository.saveAndFlush(p1);
-        //2つ目のダミーデータ作成
-        Person p2 = new Person();
-        p2.setName("鈴木花子");
-        p2.setMail(null);
-        p2.setAge(25);
-        p2.setMemo("09012345678");
-        personRepository.saveAndFlush(p2);
-    }
 }
