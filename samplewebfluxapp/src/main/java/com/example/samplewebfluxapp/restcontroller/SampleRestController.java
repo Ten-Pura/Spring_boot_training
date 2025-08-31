@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
@@ -69,14 +70,17 @@ public class SampleRestController {
     }
     
     @RequestMapping("/post/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Mono<Post> getPostById(@PathVariable int id) {
         Post post = PostRepository.findById(id);
         return Mono.just(post);
     }
 
     @RequestMapping("/posts")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Flux<Object> getAllPosts() {
-       return Flux.fromArray(PostRepository.findAll().toArray());
+        System.out.println("Accessed: /posts");
+        return Flux.fromArray(PostRepository.findAll().toArray());
     }
 
     // @RequestMapping("/file")

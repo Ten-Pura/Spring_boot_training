@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const url = "http://localhost:8080/posts";
+  const [data, setData] = useState("");
+
+  async function getData() {
+    const response = await fetch(url);
+    const data = await response.json();
+    const str = JSON.stringify(data);
+    setData(str);
+  }
+
+  getData();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React app.</h1>
+      <pre>{data}</pre>
     </div>
   );
 }
