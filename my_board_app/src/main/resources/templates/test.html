@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Test Pase</title>
+</head>
+<body class="container">
+    <div class="mb-4" th:each="post : ${posts}">
+        <p th:text="${post.title}"></p>
+        <p th:text="${post.content}"></p>
+    </div>
+</body>
+</html>

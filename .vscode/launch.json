@@ -29,6 +29,16 @@
             "projectName": "samplewebfluxapp",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MyBoardAppApplication<my_board_app>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.board_app.my_board_app.MyBoardAppApplication",
+            "projectName": "my_board_app",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
