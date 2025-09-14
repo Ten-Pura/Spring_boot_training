@@ -8,5 +8,7 @@
 <body class="container">
     <h1 class="display-4 mb-4" th:text="${title}">Default Title</h1>
     <p th:text="${msg}">Default Message</p>
+    <a class="btn btn-primary" th:href="@{/board}">Go to Board</a>
+    <a class="btn btn-secondary" th:href="@{/post}">Create Post</a>
 </body>
 </html>

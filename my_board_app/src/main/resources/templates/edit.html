@@ -10,7 +10,7 @@
     <h1 class="display-4 mb-4" th:text="${title}"></h1>
     <p th:text="${msg}"></p>
 
-    <form method="post" th:action="@{/post}" th:object="${formModel}">
+    <form method="post" th:action="@{/post/edit/{id}(id=${formModel.id})}" th:object="${formModel}">
         <div class="mb-3">
             <label for="title" class="form-label">title</label>
             <input type="text" class="form-control"
@@ -26,7 +26,7 @@
             <input type="text" class="form-control"
                 name="content" th:value="*{content}" />
         </div>
-        <input type="submit" class="btn btn-primary" value="Post" />
+        <input type="submit" class="btn btn-primary" value="編集" />
     </form>
 </body>
 </html>

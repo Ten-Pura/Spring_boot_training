@@ -25,6 +25,9 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    @Column(nullable = true)
+    private String subtitle;
+
     @Column(nullable = false)
     private String userId;
 

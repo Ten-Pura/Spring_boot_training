@@ -15,9 +15,16 @@ public class IndexController {
     @Autowired
     ServiceForIndex service;
 
+    /*
+     * 「/」へのアクセスを処理
+     * トップページを表示する。
+     * 
+     * @Param Model model
+     * @return String "index"
+     */
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("title", "トップページ");
+        model.addAttribute("title", "Top Page");
         model.addAttribute("msg", service.getWelcomeMessage());
         return "index";
     }
